@@ -1,0 +1,10 @@
+{
+  "name": "칭다오 포켓",
+  "short_name": "칭다오 포켓",
+  "description": "칭다오 여행에서 바로 꺼내 쓰는 개인용 모바일 여행 노트",
+  "start_url": "./#/",
+  "display": "standalone",
+  "background_color": "#f5f1e9",
+  "theme_color": "#17313d",
+  "icons": []
+}
