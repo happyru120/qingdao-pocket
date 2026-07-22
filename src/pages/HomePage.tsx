@@ -10,21 +10,21 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { places } from '../data/places';
+import { corePlaces } from '../data/places';
 import { getTripCountdown } from '../lib/business';
 import { PlaceCard } from '../components/PlaceCard';
 import { SectionHeading } from '../components/SectionHeading';
 
 const quickActions = [
   { to: '/places', label: '장소 찾기', description: '음식·지역·영업 상태로 검색', icon: Search },
+  { to: '/map', label: '동선 지도', description: '숙소 기준 권역 한눈에 보기', icon: MapPin },
   { to: '/phrases', label: '중국어', description: '직원 앞에서 바로 재생', icon: Languages },
   { to: '/shopping', label: '쇼핑 목록', description: '마트에서 체크하며 구매', icon: ShoppingBag },
-  { to: '/festival', label: '맥주축제', description: '9개 텐트와 야간 프로그램', icon: Beer },
 ] as const;
 
 export function HomePage() {
   const featured = ['meidaer-zhongshan', 'ccd-shop', 'taitong-night-market']
-    .map((id) => places.find((place) => place.id === id))
+    .map((id) => corePlaces.find((place) => place.id === id))
     .filter(Boolean);
 
   return (
@@ -98,6 +98,7 @@ export function HomePage() {
         <div className="theme-links">
           <Link to="/places?category=shopping"><Camera size={18} /> CCD·레트로 숍</Link>
           <Link to="/places?category=market"><MapPin size={18} /> 타이동 야시장</Link>
+          <Link to="/map"><MapPin size={18} /> 동선 지도</Link>
           <Link to="/shopping"><ShoppingBag size={18} /> 기념품 체크</Link>
           <Link to="/phrases?essential=1"><Languages size={18} /> 긴급 회화</Link>
         </div>

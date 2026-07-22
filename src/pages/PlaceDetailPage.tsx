@@ -16,15 +16,20 @@ import { Link, useParams } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { VerificationText } from '../components/VerificationText';
 import { useAppState } from '../hooks/useAppState';
-import { places } from '../data/places';
+import { useAllPlaces } from '../hooks/useAllPlaces';
 import { createAmapSearchUrl } from '../lib/amap';
 import { getBusinessState } from '../lib/business';
 
 export function PlaceDetailPage() {
   const { placeId } = useParams();
+  const { places, isLoadingRuib } = useAllPlaces();
   const place = places.find((item) => item.id === placeId);
   const { isPlaceSaved, toggleSavedPlace } = useAppState();
   const [copied, setCopied] = useState(false);
+
+  if (!place && isLoadingRuib) {
+    return <div className="page"><PageHeader title="장소를 불러오는 중" back /></div>;
+  }
 
   if (!place) {
     return <div className="page"><PageHeader title="장소를 찾지 못했어" back /></div>;
@@ -32,7 +37,7 @@ export function PlaceDetailPage() {
 
   const business = getBusinessState(place);
   const saved = isPlaceSaved(place.id);
-  const amapUrl = createAmapSearchUrl(place.amapKeyword);
+  const amapUrl = place.amapLink ?? createAmapSearchUrl(place.amapKeyword);
 
   const copyName = async () => {
     await navigator.clipboard.writeText(`${place.nameZh}${place.branch ? ` ${place.branch}` : ''}`);

@@ -1,5 +1,5 @@
 import { Check, Copy, Maximize2, Search, Volume2, X } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { FilterScroller } from '../components/FilterScroller';
 import { PageHeader } from '../components/PageHeader';
@@ -12,6 +12,25 @@ export function PhrasesPage() {
   const [essentialOnly, setEssentialOnly] = useState(params.get('essential') === '1');
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [focusId, setFocusId] = useState<string | null>(null);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [speechMessage, setSpeechMessage] = useState<string | null>(null);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  useEffect(() => {
+    if (!('speechSynthesis' in window)) return;
+
+    const loadVoices = () => {
+      setVoices(window.speechSynthesis.getVoices());
+    };
+
+    loadVoices();
+    window.speechSynthesis.addEventListener('voiceschanged', loadVoices);
+
+    return () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', loadVoices);
+      window.speechSynthesis.cancel();
+    };
+  }, []);
 
   const results = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -25,13 +44,52 @@ export function PhrasesPage() {
     });
   }, [category, essentialOnly, query]);
 
+  const chineseVoice = useMemo(() => {
+    const normalized = voices.map((voice) => ({
+      voice,
+      lang: voice.lang.toLowerCase(),
+      name: voice.name.toLowerCase(),
+    }));
+
+    return normalized.find(({ lang }) => lang === 'zh-cn')?.voice
+      ?? normalized.find(({ lang }) => lang.startsWith('zh'))?.voice
+      ?? normalized.find(({ name }) => (
+        name.includes('chinese')
+        || name.includes('mandarin')
+        || name.includes('putonghua')
+        || name.includes('普通话')
+        || name.includes('中文')
+      ))?.voice
+      ?? null;
+  }, [voices]);
+
   const speak = (text: string) => {
-    if (!('speechSynthesis' in window)) return;
+    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+      setSpeechMessage('이 브라우저는 음성 재생을 지원하지 않아.');
+      return;
+    }
+
+    if (voices.length > 0 && !chineseVoice) {
+      setSpeechMessage('기기에 중국어 음성이 설치되어 있지 않아. macOS 설정에서 중국어 음성을 추가해야 해.');
+      return;
+    }
+
     window.speechSynthesis.cancel();
+    window.speechSynthesis.resume();
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'zh-CN';
+    utterance.voice = chineseVoice;
     utterance.rate = 0.82;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    utterance.onstart = () => setSpeechMessage('중국어 재생 중');
+    utterance.onend = () => setSpeechMessage(null);
+    utterance.onerror = () => setSpeechMessage('음성 재생이 막혔어. 브라우저 소리 권한과 시스템 음량을 확인해줘.');
+
+    utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
+    window.setTimeout(() => window.speechSynthesis.resume(), 0);
   };
 
   const copy = async (id: string, text: string) => {
@@ -69,6 +127,8 @@ export function PhrasesPage() {
         </button>
         <span>{results.length}개</span>
       </div>
+
+      {speechMessage ? <p className="phrase-speech-status" role="status">{speechMessage}</p> : null}
 
       <div className="phrase-list">
         {results.map((phrase) => (

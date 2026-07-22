@@ -4,6 +4,7 @@ import { AppStateProvider } from './context/AppStateContext';
 import { FestivalPage } from './pages/FestivalPage';
 import { HomePage } from './pages/HomePage';
 import { ItineraryPage } from './pages/ItineraryPage';
+import { MapPage } from './pages/MapPage';
 import { PhrasesPage } from './pages/PhrasesPage';
 import { PlaceDetailPage } from './pages/PlaceDetailPage';
 import { PlacesPage } from './pages/PlacesPage';
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/places" element={<PlacesPage />} />
             <Route path="/places/:placeId" element={<PlaceDetailPage />} />
+            <Route path="/map" element={<MapPage />} />
             <Route path="/itinerary" element={<ItineraryPage />} />
             <Route path="/phrases" element={<PhrasesPage />} />
             <Route path="/saved" element={<SavedPage />} />

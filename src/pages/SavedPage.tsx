@@ -5,12 +5,13 @@ import { EmptyState } from '../components/EmptyState';
 import { PageHeader } from '../components/PageHeader';
 import { PlaceCard } from '../components/PlaceCard';
 import { useAppState } from '../hooks/useAppState';
-import { places } from '../data/places';
+import { useAllPlaces } from '../hooks/useAllPlaces';
 import { shoppingItems } from '../data/shopping';
 
 export function SavedPage() {
   const [tab, setTab] = useState<'places' | 'shopping'>('places');
   const { savedPlaceIds, checkedShoppingIds } = useAppState();
+  const { places, isLoadingRuib, ruibError } = useAllPlaces();
   const savedPlaces = places.filter((place) => savedPlaceIds.includes(place.id));
   const checkedItems = shoppingItems.filter((item) => checkedShoppingIds.includes(item.id));
 
@@ -30,6 +31,10 @@ export function SavedPage() {
       {tab === 'places' ? (
         savedPlaces.length ? (
           <div className="stack-list">{savedPlaces.map((place) => <PlaceCard key={place.id} place={place} compact />)}</div>
+        ) : isLoadingRuib ? (
+          <EmptyState icon={Bookmark} title="저장한 장소를 불러오는 중" description="외부에서 가져온 장소 데이터까지 확인하고 있어." />
+        ) : ruibError ? (
+          <EmptyState icon={Bookmark} title="일부 저장 장소를 불러오지 못했어" description={ruibError} />
         ) : (
           <EmptyState icon={Bookmark} title="저장한 장소가 없어" description="장소 카드의 북마크를 눌러 여행 후보를 모아봐." />
         )

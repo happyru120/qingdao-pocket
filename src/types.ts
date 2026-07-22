@@ -33,6 +33,13 @@ export type Place = {
   stayLabel: string;
   hotelTravelLabel: string;
   amapKeyword: string;
+  amapLink?: string;
+  dianpingLink?: string;
+  bookingLink?: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
   verification: VerificationState;
   verifiedAt?: string;
   recommendationGrounds: string[];
@@ -77,9 +84,28 @@ export type ShoppingItem = {
 export type ItineraryStop = {
   time: string;
   placeId?: string;
+  to?: string;
   title: string;
   note: string;
   travel?: string;
+};
+
+export type MealOption = {
+  rank: '추천 1순위' | '대안';
+  name: string;
+  cnName?: string;
+  note: string;
+  menu: string[];
+  placeId?: string;
+  amapKeyword?: string;
+};
+
+export type MealRecommendation = {
+  kind?: 'meal' | 'cafe';
+  slot: string;
+  area: string;
+  mustEat: string[];
+  options: MealOption[];
 };
 
 export type ItineraryDay = {
@@ -88,4 +114,5 @@ export type ItineraryDay = {
   title: string;
   pace: '여유' | '보통' | '걷기 적음';
   stops: ItineraryStop[];
+  meals?: MealRecommendation[];
 };
