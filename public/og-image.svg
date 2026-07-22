@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="칭다오 포켓">
+  <rect width="1200" height="630" fill="#f2efff"/>
+  <rect x="72" y="72" width="1056" height="486" rx="34" fill="#fbfaff" stroke="#d5ccf4" stroke-width="3"/>
+  <path d="M148 386c92-74 181-111 268-111 116 0 185 78 298 78 93 0 171-52 259-139" fill="none" stroke="#792cff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M145 455h910" stroke="#f9f871" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="182" cy="386" r="24" fill="#ff6f91"/>
+  <circle cx="418" cy="275" r="18" fill="#9b78ff"/>
+  <circle cx="725" cy="352" r="22" fill="#ff9671"/>
+  <circle cx="972" cy="214" r="20" fill="#6600e5"/>
+  <text x="146" y="176" fill="#170040" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans KR','Segoe UI',sans-serif" font-size="72" font-weight="850">칭다오 포켓</text>
+  <text x="150" y="246" fill="#685c7f" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans KR','Segoe UI',sans-serif" font-size="32" font-weight="650">일정, 맛집, 지도, 중국어를 바로 꺼내 보는 여행 노트</text>
+  <text x="150" y="514" fill="#6600e5" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans KR','Segoe UI',sans-serif" font-size="28" font-weight="800">Qingdao Pocket</text>
+</svg>

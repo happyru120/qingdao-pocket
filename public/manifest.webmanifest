@@ -1,10 +1,17 @@
 {
   "name": "칭다오 포켓",
-  "short_name": "칭다오 포켓",
-  "description": "칭다오 여행에서 바로 꺼내 쓰는 개인용 모바일 여행 노트",
+  "short_name": "Qingdao",
+  "description": "칭다오 여행에서 일정, 맛집, 지도, 중국어 문장을 바로 꺼내 보는 개인용 모바일 노트",
   "start_url": "./#/",
   "display": "standalone",
-  "background_color": "#f5f1e9",
-  "theme_color": "#17313d",
-  "icons": []
+  "background_color": "#f2efff",
+  "theme_color": "#170040",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
