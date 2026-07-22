@@ -2439,6 +2439,145 @@ button {
   font-weight: 720;
 }
 
+.packing-page {
+  padding-bottom: 124px;
+}
+
+.packing-summary {
+  margin-bottom: 14px;
+}
+
+.packing-summary__copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.packing-progress {
+  overflow: hidden;
+  height: 8px;
+  margin-top: 12px;
+  background: rgba(24, 48, 72, 0.1);
+  border-radius: 999px;
+}
+
+.packing-progress span {
+  display: block;
+  height: 100%;
+  background: var(--amber);
+  border-radius: inherit;
+  transition: width 160ms ease;
+}
+
+.packing-section-list {
+  display: grid;
+  gap: 13px;
+}
+
+.packing-section {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.packing-section__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.packing-section__title {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  min-width: 0;
+}
+
+.packing-section__title > svg {
+  flex: 0 0 auto;
+  box-sizing: content-box;
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+  color: var(--navy);
+  background: var(--surface-soft);
+  border-radius: 8px;
+}
+
+.packing-section h2 {
+  margin-bottom: 4px;
+  color: var(--navy);
+  font-size: 18px;
+}
+
+.packing-section p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.packing-section__header > span {
+  flex: 0 0 auto;
+  color: var(--amber);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.packing-list {
+  display: grid;
+  padding: 6px 12px 12px;
+}
+
+.packing-item {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 0;
+  color: var(--ink);
+  text-align: left;
+  border-bottom: 1px solid rgba(222,215,204,0.66);
+}
+
+.packing-item:last-child {
+  border-bottom: 0;
+}
+
+.packing-item__box {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: white;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.packing-item__label {
+  font-size: 16px;
+  font-weight: 680;
+}
+
+.packing-item.is-checked {
+  color: var(--muted);
+}
+
+.packing-item.is-checked .packing-item__box {
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.packing-item.is-checked .packing-item__label {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+
 .segmented-control {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

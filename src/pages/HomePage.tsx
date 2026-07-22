@@ -4,6 +4,7 @@ import {
   BookOpenText,
   Camera,
   ChevronRight,
+  ClipboardCheck,
   Languages,
   MapPin,
   Search,
@@ -20,6 +21,7 @@ const quickActions = [
   { to: '/map', label: '동선 지도', description: '숙소 기준 권역 한눈에 보기', icon: MapPin },
   { to: '/phrases', label: '중국어', description: '직원 앞에서 바로 재생', icon: Languages },
   { to: '/shopping', label: '쇼핑 목록', description: '마트에서 체크하며 구매', icon: ShoppingBag },
+  { to: '/packing', label: '준비물 체크', description: '출국 전 빠뜨린 것 확인', icon: ClipboardCheck },
 ] as const;
 
 export function HomePage() {
@@ -100,6 +102,7 @@ export function HomePage() {
           <Link to="/places?category=market"><MapPin size={18} /> 타이동 야시장</Link>
           <Link to="/map"><MapPin size={18} /> 동선 지도</Link>
           <Link to="/shopping"><ShoppingBag size={18} /> 기념품 체크</Link>
+          <Link to="/packing"><ClipboardCheck size={18} /> 준비물 체크</Link>
           <Link to="/phrases?essential=1"><Languages size={18} /> 긴급 회화</Link>
         </div>
       </section>

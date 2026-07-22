@@ -5,6 +5,7 @@ import { FestivalPage } from './pages/FestivalPage';
 import { HomePage } from './pages/HomePage';
 import { ItineraryPage } from './pages/ItineraryPage';
 import { MapPage } from './pages/MapPage';
+import { PackingPage } from './pages/PackingPage';
 import { PhrasesPage } from './pages/PhrasesPage';
 import { PlaceDetailPage } from './pages/PlaceDetailPage';
 import { PlacesPage } from './pages/PlacesPage';
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/phrases" element={<PhrasesPage />} />
             <Route path="/saved" element={<SavedPage />} />
             <Route path="/shopping" element={<ShoppingPage />} />
+            <Route path="/packing" element={<PackingPage />} />
             <Route path="/festival" element={<FestivalPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
