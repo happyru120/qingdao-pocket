@@ -2,6 +2,7 @@ import {
   ArrowRight,
   Beer,
   BookOpenText,
+  CakeSlice,
   Camera,
   ChevronRight,
   ClipboardCheck,
@@ -100,6 +101,7 @@ export function HomePage() {
         <div className="theme-links">
           <Link to="/places?category=shopping"><Camera size={18} /> CCD·레트로 숍</Link>
           <Link to="/places?category=market"><MapPin size={18} /> 타이동 야시장</Link>
+          <Link to="/places?category=cafe&q=디저트"><CakeSlice size={18} /> 디저트 후보</Link>
           <Link to="/map"><MapPin size={18} /> 동선 지도</Link>
           <Link to="/shopping"><ShoppingBag size={18} /> 기념품 체크</Link>
           <Link to="/packing"><ClipboardCheck size={18} /> 준비물 체크</Link>

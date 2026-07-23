@@ -37,7 +37,7 @@ export function PlacesPage() {
       const deliveryMatch = !delivery || place.deliveryCandidate;
       return categoryMatch && queryMatch && openMatch && walkingMatch && deliveryMatch;
     });
-  }, [category, delivery, lowWalking, openOnly, query]);
+  }, [category, delivery, lowWalking, openOnly, places, query]);
 
   const reset = () => {
     setQuery('');
